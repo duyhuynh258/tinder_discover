@@ -45,7 +45,10 @@ class _CardStackState extends State<CardStack> {
           bottom: 90,
           left: 0,
           right: 0,
-          child: CardActions(hoverAction: _hoverAction),
+          child: CardActions(
+            hoverAction: _hoverAction,
+            onAction: (action) {},
+          ),
         ),
       ],
     );
@@ -63,14 +66,18 @@ class _CardStackState extends State<CardStack> {
 
   void _endSwipe(int index, DragEndDetails details) {
     if (_hoverAction != null) {
-      setState(() {
-        dismissed[index] = true;
-        _hoverAction = null;
-      });
+      handleHoverAction(_hoverAction!, index);
     } else {
       setState(() {
         positions[index] = const Offset(0, 0);
       });
     }
+  }
+
+  void handleHoverAction(CardAction action, int index) {
+    setState(() {
+      dismissed[index] = true;
+      _hoverAction = null;
+    });
   }
 }

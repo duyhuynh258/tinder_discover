@@ -12,9 +12,11 @@ class CardActionButton extends StatelessWidget {
     super.key,
     required this.action,
     required this.isHovered,
+    required this.onAction,
   });
   final bool isHovered;
   final CardAction action;
+  final VoidCallback onAction;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,14 @@ class CardActionButton extends StatelessWidget {
       curve: Curves.easeInOut,
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
-        child: SvgPicture.asset(
-          isHovered ? iconFilledPath : iconPath,
-          key: ValueKey<String>(isHovered ? iconFilledPath : iconPath),
-          height: 60,
-          width: 60,
+        child: InkWell(
+          onTap: onAction,
+          child: SvgPicture.asset(
+            isHovered ? iconFilledPath : iconPath,
+            key: ValueKey<String>(isHovered ? iconFilledPath : iconPath),
+            height: 60,
+            width: 60,
+          ),
         ),
       ),
     );
@@ -58,9 +63,10 @@ class CardActionButton extends StatelessWidget {
 }
 
 class CardActions extends StatelessWidget {
-  const CardActions({super.key, this.hoverAction});
+  const CardActions({super.key, this.hoverAction, required this.onAction});
 
   final CardAction? hoverAction;
+  final Function(CardAction) onAction;
   @override
   Widget build(BuildContext context) {
     return Wrap(
@@ -75,6 +81,7 @@ class CardActions extends StatelessWidget {
           child: CardActionButton(
             action: CardAction.dislike,
             isHovered: isDislikeHovered,
+            onAction: () => onAction(CardAction.dislike),
           ),
         ),
         Visibility(
@@ -85,6 +92,7 @@ class CardActions extends StatelessWidget {
           child: CardActionButton(
             action: CardAction.superLike,
             isHovered: isSuperLikeHovered,
+            onAction: () => onAction(CardAction.superLike),
           ),
         ),
         Visibility(
@@ -95,6 +103,7 @@ class CardActions extends StatelessWidget {
           child: CardActionButton(
             action: CardAction.like,
             isHovered: isLikeHovered,
+            onAction: () => onAction(CardAction.like),
           ),
         ),
       ],

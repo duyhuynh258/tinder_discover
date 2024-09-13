@@ -50,7 +50,7 @@ class SwipeCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,6 +67,9 @@ class SwipeCard extends StatelessWidget {
                           fontSize: 20,
                         ),
                       ),
+                      const SizedBox(
+                        height: 72,
+                      )
                     ],
                   ),
                 ),
@@ -88,14 +91,16 @@ class SwipeCard extends StatelessWidget {
 
 CardAction? cardHoverAction(Offset position) {
   log('Position: $position');
-  if (position.dy < -50) {
-    return CardAction.superLike;
-  }
+
   if (position.dx < -50) {
     return CardAction.dislike;
   }
   if (position.dx > 50) {
     return CardAction.like;
+  }
+
+  if (position.dy < -50) {
+    return CardAction.superLike;
   }
   return null;
 }
