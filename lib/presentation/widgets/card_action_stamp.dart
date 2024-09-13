@@ -10,11 +10,11 @@ class CardActionStamp extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: Colors.transparent,
+        color: color.withOpacity(0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: color,
-          width: 2,
+          width: 4,
         ),
       ),
       child: Text(

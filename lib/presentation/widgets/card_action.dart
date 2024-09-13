@@ -18,12 +18,18 @@ class CardActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Transform.scale(
+    return AnimatedScale(
+      duration: const Duration(milliseconds: 300),
       scale: isHovered ? 1.3 : 1.0,
-      child: SvgPicture.asset(
-        isHovered ? iconFilledPath : iconPath,
-        height: 50,
-        width: 50,
+      curve: Curves.easeInOut,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        child: SvgPicture.asset(
+          isHovered ? iconFilledPath : iconPath,
+          key: ValueKey<String>(isHovered ? iconFilledPath : iconPath),
+          height: 60,
+          width: 60,
+        ),
       ),
     );
   }
@@ -57,11 +63,15 @@ class CardActions extends StatelessWidget {
   final CardAction? hoverAction;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Wrap(
+      alignment: WrapAlignment.center,
+      spacing: 32,
       children: [
         Visibility(
           visible: hoverAction == null || isDislikeHovered,
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
           child: CardActionButton(
             action: CardAction.dislike,
             isHovered: isDislikeHovered,
@@ -69,6 +79,9 @@ class CardActions extends StatelessWidget {
         ),
         Visibility(
           visible: hoverAction == null || isSuperLikeHovered,
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
           child: CardActionButton(
             action: CardAction.superLike,
             isHovered: isSuperLikeHovered,
@@ -76,6 +89,9 @@ class CardActions extends StatelessWidget {
         ),
         Visibility(
           visible: hoverAction == null || isLikeHovered,
+          maintainSize: true,
+          maintainAnimation: true,
+          maintainState: true,
           child: CardActionButton(
             action: CardAction.like,
             isHovered: isLikeHovered,

@@ -42,7 +42,7 @@ class _CardStackState extends State<CardStack> {
             ),
           ),
         Positioned(
-          bottom: 50,
+          bottom: 90,
           left: 0,
           right: 0,
           child: CardActions(hoverAction: _hoverAction),
