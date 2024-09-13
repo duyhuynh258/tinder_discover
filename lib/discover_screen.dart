@@ -1,5 +1,7 @@
 // discover_screen.dart
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:tinder_discover/discover_action.dart';
 
 import 'swipe_card.dart';
 
@@ -51,34 +53,46 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const Text(
-              "Discover",
-              style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
+            AppBar(
+              backgroundColor: Colors.black,
+              title: const Text(
+                "Discover",
+                style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+              elevation: 0,
+              leading: SvgPicture.asset(
+                'assets/icons/ic_branding.svg',
+              ),
             ),
+            const SizedBox(height: 20),
             Expanded(
-              child: SizedBox(
-                child: Stack(
-                  fit: StackFit.expand,
-                  clipBehavior: Clip.none,
-                  children: people.asMap().entries.map((entry) {
-                    int index = entry.key;
-                    final position = positions[index];
-                    return Positioned(
-                      left: position.dx,
-                      top: position.dy,
-                      child: SwipeCard(
-                        index: index,
-                        dismissed: dismissed[index],
-                        onSwipeUpdate: (details) => _swipeCard(index, details),
-                        onSwipeEnd: (details) => _endSwipe(index, details),
-                        name: people[index],
-                        imageIndex: index + 1,
-                        position: position,
-                      ),
-                    );
-                  }).toList(),
-                ),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: people.asMap().entries.map((entry) {
+                  int index = entry.key;
+                  final position = positions[index];
+                  return Positioned(
+                    left: position.dx,
+                    top: position.dy,
+                    child: SwipeCard(
+                      index: index,
+                      dismissed: dismissed[index],
+                      onSwipeUpdate: (details) => _swipeCard(index, details),
+                      onSwipeEnd: (details) => _endSwipe(index, details),
+                      name: people[index],
+                      imageIndex: index + 1,
+                      position: position,
+                    ),
+                  );
+                }).toList()
+                  ..add(
+                    Positioned(
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      child: DiscoverActionStack(),
+                    ),
+                  ),
               ),
             ),
           ],

@@ -25,14 +25,13 @@ class SwipeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     if (dismissed) return Container();
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     const padding = 16.0;
     // Ensure Positioned is only used inside a Stack
     return GestureDetector(
       onPanUpdate: onSwipeUpdate,
       onPanEnd: onSwipeEnd,
       child: Transform.rotate(
-        angle: position.dx / screenWidth * 0.2,
+        angle: -position.dx / screenWidth * 0.2,
         child: Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: Container(
