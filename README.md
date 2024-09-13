@@ -1,6 +1,8 @@
 # Tinder Discover
 
-This project is a Flutter application that mimics the swipe card functionality of Tinder. It is designed to demonstrate the use of Flutter's gesture detection, animations, and state management.
+This project is a Flutter application that mimics Tinder's swipe card functionality. It is designed to demonstrate Flutter's gesture detection, animations, and state management.
+
+https://github.com/user-attachments/assets/c83a36af-ae82-4537-980f-a61c8b4fa1e7
 
 ## Architecture
 
@@ -21,8 +23,9 @@ The project follows a simple yet effective architecture to keep the codebase cle
 
 - **Data**: 
   - Contains all the data-related code.
-  - **Data Sources**: Contains the data sources that are used to fetch data from the network or local storage.
+  - **Data Sources**: Contains the data sources used to fetch data from the network or local storage.
   - **Repositories**: Contains the implementation of the repositories.
+
 
 ### Directory Structure
 ```
