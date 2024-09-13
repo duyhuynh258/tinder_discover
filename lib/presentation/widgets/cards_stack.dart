@@ -3,15 +3,15 @@ import 'package:tinder_discover/domain/profile.dart';
 import 'package:tinder_discover/presentation/widgets/card_action.dart';
 import 'package:tinder_discover/presentation/widgets/swipe_card.dart';
 
-class SwipeCardStack extends StatefulWidget {
-  const SwipeCardStack({super.key, required this.profiles});
+class CardStack extends StatefulWidget {
+  const CardStack({super.key, required this.profiles});
   final List<Profile> profiles;
 
   @override
-  State<SwipeCardStack> createState() => _SwipeCardStackState();
+  State<CardStack> createState() => _CardStackState();
 }
 
-class _SwipeCardStackState extends State<SwipeCardStack> {
+class _CardStackState extends State<CardStack> {
   List<Offset> positions = [];
   List<bool> dismissed = [];
 

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tinder_discover/presentation/discover_notifier.dart';
-import 'package:tinder_discover/presentation/widgets/swipe_card_stack.dart';
+import 'package:tinder_discover/presentation/widgets/cards_stack.dart';
 import 'package:tinder_discover/shared/di.dart';
 
 class DiscoverScreen extends StatefulWidget {
@@ -49,7 +49,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       child: CircularProgressIndicator(),
                     );
                   }
-                  return SwipeCardStack(profiles: discoverNotifier.profiles);
+                  return CardStack(profiles: discoverNotifier.profiles);
                 },
               ),
             ),
