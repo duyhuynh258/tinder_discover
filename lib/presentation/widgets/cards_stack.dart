@@ -62,16 +62,15 @@ class _CardStackState extends State<CardStack> {
   }
 
   void _endSwipe(int index, DragEndDetails details) {
-    const dragThreshold = 100;
-    if (positions[index].dx > dragThreshold || positions[index].dx < -dragThreshold) {
+    if (_hoverAction != null) {
       setState(() {
         dismissed[index] = true;
+        _hoverAction = null;
       });
     } else {
       setState(() {
         positions[index] = const Offset(0, 0);
       });
     }
-    _hoverAction = null;
   }
 }

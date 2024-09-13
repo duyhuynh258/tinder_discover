@@ -10,7 +10,7 @@ class CardActionStamp extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        color: color.withOpacity(0.1),
+        color: color.withOpacity(0.2),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: color,
@@ -22,7 +22,7 @@ class CardActionStamp extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: color,
-          fontSize: 24,
+          fontSize: 28,
           fontWeight: FontWeight.bold,
         ),
       ),
