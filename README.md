@@ -1,16 +1,51 @@
-# tinder_discover
+# Tinder Discover
 
-A new Flutter project.
+This project is a Flutter application that mimics the swipe card functionality of Tinder. It is designed to demonstrate the use of Flutter's gesture detection, animations, and state management.
 
-## Getting Started
+## Architecture
 
-This project is a starting point for a Flutter application.
+The project follows a simple yet effective architecture to keep the codebase clean and maintainable. The main components are:
 
-A few resources to get you started if this is your first Flutter project:
+- **Presentation**: 
+  - Contains all the widgets and UI-related code.
+  - **State Management**: ChangeNotifier - Flutter's built-in state management.
+  - **Widgets**: Contains all the widgets used in the application.
+  - **Dependency Injection**: Contains the dependency injection code.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Domain**: 
+  - Contains all the business logic and domain-specific code.
+  - **Entities**: Contains all the models and entities used in the application.
+  - **Repositories**: Contains the abstract classes for the repositories.
+  - **Failures**: Contains all the possible failures that can occur in the application.
+  - **Result**: Contains the result class that is used to return the result of an operation.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Data**: 
+  - Contains all the data-related code.
+  - **Data Sources**: Contains the data sources that are used to fetch data from the network or local storage.
+  - **Repositories**: Contains the implementation of the repositories.
+
+### Directory Structure
+```
+lib
+├── data
+│   ├── profile_data_source.dart
+│   ├── profile_dto.dart
+│   └── profile_repository_impl.dart
+├── domain
+│   ├── failure.dart
+│   ├── profile.dart
+│   ├── profile_failure.dart
+│   ├── profile_repository.dart
+│   └── result.dart
+├── main.dart
+├── presentation
+│   ├── discover_notifier.dart
+│   ├── discover_screen.dart
+│   └── widgets
+└── shared
+    └── di.dart
+```
+
+
+## Flutter version
+- Flutter 3.22.3 • channel stable
