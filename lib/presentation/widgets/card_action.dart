@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-enum DiscoverAction {
+enum CardAction {
   nope,
   like,
   superLike,
 }
 
-class DiscoverActionButton extends StatelessWidget {
-  const DiscoverActionButton({super.key, required this.action});
+class CardActionButton extends StatelessWidget {
+  const CardActionButton({super.key, required this.action});
   final bool isHovered = true;
-  final DiscoverAction action;
+  final CardAction action;
 
   @override
   Widget build(BuildContext context) {
@@ -26,38 +26,38 @@ class DiscoverActionButton extends StatelessWidget {
 
   String get iconPath {
     switch (action) {
-      case DiscoverAction.nope:
+      case CardAction.nope:
         return 'assets/icons/ic_dislike.svg';
-      case DiscoverAction.like:
+      case CardAction.like:
         return 'assets/icons/ic_like.svg';
-      case DiscoverAction.superLike:
+      case CardAction.superLike:
         return 'assets/icons/ic_super_like.svg';
     }
   }
 
   String get iconFilledPath {
     switch (action) {
-      case DiscoverAction.nope:
+      case CardAction.nope:
         return 'assets/icons/ic_dislike_filled.svg';
-      case DiscoverAction.like:
+      case CardAction.like:
         return 'assets/icons/ic_like_filled.svg';
-      case DiscoverAction.superLike:
+      case CardAction.superLike:
         return 'assets/icons/ic_super_like_filled.svg';
     }
   }
 }
 
-class DiscoverActionStack extends StatelessWidget {
-  const DiscoverActionStack({super.key});
+class CardActions extends StatelessWidget {
+  const CardActions({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        DiscoverActionButton(action: DiscoverAction.nope),
-        DiscoverActionButton(action: DiscoverAction.superLike),
-        DiscoverActionButton(action: DiscoverAction.like),
+        CardActionButton(action: CardAction.nope),
+        CardActionButton(action: CardAction.superLike),
+        CardActionButton(action: CardAction.like),
       ],
     );
   }

@@ -1,23 +1,20 @@
 // swipe_card.dart
 import 'package:flutter/material.dart';
+import 'package:tinder_discover/domain/profile.dart';
 
 class SwipeCard extends StatelessWidget {
-  final int index;
+  final Profile profile;
   final bool dismissed;
   final Offset position;
   final Function(DragUpdateDetails) onSwipeUpdate;
   final Function(DragEndDetails) onSwipeEnd;
-  final String name;
-  final int imageIndex;
 
   const SwipeCard({
     super.key,
-    required this.index,
+    required this.profile,
     required this.dismissed,
     required this.onSwipeUpdate,
     required this.onSwipeEnd,
-    required this.name,
-    required this.imageIndex,
     required this.position,
   });
 
@@ -39,8 +36,7 @@ class SwipeCard extends StatelessWidget {
             width: screenWidth - padding,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/image_$imageIndex.png'), // Replace with your asset images
+                image: NetworkImage(profile.imageUrl),
                 fit: BoxFit.fitWidth,
               ),
               borderRadius: BorderRadius.circular(16),
@@ -52,13 +48,13 @@ class SwipeCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    profile.name,
                     style: const TextStyle(
                         color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold),
                   ),
-                  const Text(
-                    'Model', // Add dynamic profession based on data
-                    style: TextStyle(
+                  Text(
+                    '${profile.distanceKm} km', // Add dynamic profession based on data
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 20,
                     ),
