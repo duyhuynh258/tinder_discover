@@ -28,7 +28,7 @@ class SwipeCard extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     const padding = 16.0;
     // Ensure Positioned is only used inside a Stack
-    final hoverAction = _cardHoverAction(position);
+    final hoverAction = cardHoverAction(position);
     return GestureDetector(
       onPanUpdate: onSwipeUpdate,
       onPanEnd: onSwipeEnd,
@@ -84,18 +84,18 @@ class SwipeCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  CardAction? _cardHoverAction(Offset position) {
-    log('Position: $position');
-    if (position.dy < -50) {
-      return CardAction.superLike;
-    }
-    if (position.dx < -50) {
-      return CardAction.nope;
-    }
-    if (position.dx > 50) {
-      return CardAction.like;
-    }
-    return null;
+CardAction? cardHoverAction(Offset position) {
+  log('Position: $position');
+  if (position.dy < -50) {
+    return CardAction.superLike;
   }
+  if (position.dx < -50) {
+    return CardAction.dislike;
+  }
+  if (position.dx > 50) {
+    return CardAction.like;
+  }
+  return null;
 }

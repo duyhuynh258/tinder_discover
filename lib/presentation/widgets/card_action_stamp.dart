@@ -31,7 +31,7 @@ class CardActionStamp extends StatelessWidget {
 
   Color get color {
     switch (action) {
-      case CardAction.nope:
+      case CardAction.dislike:
         return const Color((0xFFF75555));
       case CardAction.like:
         return const Color((0xFF9610FF));
@@ -42,7 +42,7 @@ class CardActionStamp extends StatelessWidget {
 
   String get text {
     switch (action) {
-      case CardAction.nope:
+      case CardAction.dislike:
         return "Nope!";
       case CardAction.like:
         return "Like!";

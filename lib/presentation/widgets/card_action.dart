@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 enum CardAction {
-  nope,
+  dislike,
   like,
   superLike,
 }
 
 class CardActionButton extends StatelessWidget {
-  const CardActionButton({super.key, required this.action});
-  final bool isHovered = true;
+  const CardActionButton({
+    super.key,
+    required this.action,
+    required this.isHovered,
+  });
+  final bool isHovered;
   final CardAction action;
 
   @override
@@ -26,7 +30,7 @@ class CardActionButton extends StatelessWidget {
 
   String get iconPath {
     switch (action) {
-      case CardAction.nope:
+      case CardAction.dislike:
         return 'assets/icons/ic_dislike.svg';
       case CardAction.like:
         return 'assets/icons/ic_like.svg';
@@ -37,7 +41,7 @@ class CardActionButton extends StatelessWidget {
 
   String get iconFilledPath {
     switch (action) {
-      case CardAction.nope:
+      case CardAction.dislike:
         return 'assets/icons/ic_dislike_filled.svg';
       case CardAction.like:
         return 'assets/icons/ic_like_filled.svg';
@@ -48,17 +52,40 @@ class CardActionButton extends StatelessWidget {
 }
 
 class CardActions extends StatelessWidget {
-  const CardActions({super.key});
+  const CardActions({super.key, this.hoverAction});
 
+  final CardAction? hoverAction;
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        CardActionButton(action: CardAction.nope),
-        CardActionButton(action: CardAction.superLike),
-        CardActionButton(action: CardAction.like),
+        Visibility(
+          visible: hoverAction == null || isDislikeHovered,
+          child: CardActionButton(
+            action: CardAction.dislike,
+            isHovered: isDislikeHovered,
+          ),
+        ),
+        Visibility(
+          visible: hoverAction == null || isSuperLikeHovered,
+          child: CardActionButton(
+            action: CardAction.superLike,
+            isHovered: isSuperLikeHovered,
+          ),
+        ),
+        Visibility(
+          visible: hoverAction == null || isLikeHovered,
+          child: CardActionButton(
+            action: CardAction.like,
+            isHovered: isLikeHovered,
+          ),
+        ),
       ],
     );
   }
+
+  bool get isDislikeHovered => hoverAction == CardAction.dislike;
+  bool get isSuperLikeHovered => hoverAction == CardAction.superLike;
+  bool get isLikeHovered => hoverAction == CardAction.like;
 }

@@ -15,6 +15,8 @@ class _CardStackState extends State<CardStack> {
   List<Offset> positions = [];
   List<bool> dismissed = [];
 
+  CardAction? _hoverAction;
+
   @override
   void initState() {
     super.initState();
@@ -39,11 +41,11 @@ class _CardStackState extends State<CardStack> {
               position: positions[i],
             ),
           ),
-        const Positioned(
+        Positioned(
+          bottom: 50,
           left: 0,
-          bottom: 0,
           right: 0,
-          child: CardActions(),
+          child: CardActions(hoverAction: _hoverAction),
         ),
       ],
     );
@@ -55,6 +57,7 @@ class _CardStackState extends State<CardStack> {
         positions[index].dx + details.delta.dx,
         positions[index].dy + details.delta.dy,
       );
+      _hoverAction = cardHoverAction(positions[index]);
     });
   }
 
@@ -69,5 +72,6 @@ class _CardStackState extends State<CardStack> {
         positions[index] = const Offset(0, 0);
       });
     }
+    _hoverAction = null;
   }
 }
