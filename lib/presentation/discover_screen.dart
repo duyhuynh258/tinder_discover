@@ -22,6 +22,12 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   }
 
   @override
+  void dispose() {
+    discoverNotifier.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
